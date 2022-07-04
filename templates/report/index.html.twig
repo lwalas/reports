@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-3">
+            {{ form(form) }}
+        </div>
+        <div class="col-sm-9">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Godzina</th>
+                    <th scope="col">Użytkownik</th>
+                    <th scope="col">Lokal</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ex in export %}
+                <tr>
+                    <td>{{ ex.datetime|date('y-m-d') }}</td>
+                    <td>{{ ex.datetime|date('h:i:s') }}</td>
+                    <td>{{ ex.exportUser.name }}</td>
+                    <td>{{ ex.place.name }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
